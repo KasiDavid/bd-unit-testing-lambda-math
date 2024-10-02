@@ -100,5 +100,55 @@ public class AtaMathTest {
 
     // average()
 
-    // PARTICIPANTS: ADD YOUR NEW TESTS HERE (and you can delete this line while you're at it)
+    @Test
+    public void average_ofSingleInteger_isThatInteger() {
+        //GIVEN
+        int[] values = {3};
+        AtaMath ataMath = new AtaMath();
+
+        //WHEN
+        double result = ataMath.average(values);
+
+        //THEN
+        assertEquals(3, result, "Expected averaging a single integer to return that integer");
+    }
+
+    @Test
+    public void average_ofSeveralIntegers_isCorrect() {
+        //GIVEN
+        int[] values = {2, 3}; //average(2,3) = 2.5
+        AtaMath ataMath = new AtaMath();
+
+        //WHEN
+        double result = ataMath.average(values);
+
+        //THEN
+        assertEquals(2.5, result, "Expected average of two integers to be correct");
+    }
+
+    @Test
+    public void average_ofNullArray_throwsIllegalArgumentException() {
+        //GIVEN
+        int[] values = null;
+        AtaMath ataMath = new AtaMath();
+
+        assertThrows(IllegalArgumentException.class,
+                () -> ataMath.average(values),
+                "Expected average of null array to throw illegal argument exception");
+
+    }
+
+    @Test
+    public void average_ofPositiveAndNegativeIntegers_isCorrect() {
+        //GIVEN
+        int[] values = {3, -2};
+        AtaMath ataMath = new AtaMath();
+
+        //WHEN
+        double result = ataMath.average(values);
+
+        //THEN
+        assertEquals(0.5, result, "Expected average of positive and negative integers to be correct");
+
+    }
 }
